@@ -1,0 +1,124 @@
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+
+/* #Primary
+================================================== */
+
+body{
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+/* #Navigation
+================================================== */
+
+.start-header {
+	opacity: 1;
+	transform: translateY(0);
+  padding: 20px 0;
+  /* margin-bottom: 85px; */
+	box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15);
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+
+.navbar{
+  padding: 0;
+}
+
+/* LOGO */
+.navbar-brand img{
+	height: 28px;
+	width: auto;
+	display: block;
+  filter: brightness(10%);
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+
+
+.nav-link{
+	color: #212121 !important;
+	font-weight: 500;
+  transition: all 200ms linear;
+}
+
+
+.nav-item:after{
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	content: '';
+	background-color: #F79F1F;
+	opacity: 0;
+    transition: all 200ms linear;
+}
+.nav-item:hover:after{
+	bottom: 0;
+	opacity: 1;
+}
+.nav-item.active:hover:after{
+	opacity: 0;
+}
+.nav-item{
+	position: relative;
+  transition: all 200ms linear;
+}
+
+/* #Session Style
+================================================== */
+header{
+  height: 94vh;
+  margin-bottom: 80px;
+}
+
+.banner-image, .banner-text{
+  margin: 90px 0px -30px;
+}
+
+.img1{
+  width: 100%;
+}
+
+.info a{
+  color: #fff !important;
+  text-decoration: none;
+  padding: 15px 25px;
+  background: #F79F1F;
+  margin: 15px 0px;
+  display: inline-block;
+}
+
+/* .card {
+  max-width: 90%;
+  margin-top: 70px;
+  margin-left: 5%;
+  border: none;
+} */
+
+.card-img{
+  width: 80%;
+  box-shadow: black;
+}
+
+.card-title {
+  font-size: 30px;
+  margin-top: 40px;
+}
+
+.card-body{
+  margin-top: 20px;
+}
+
+
+/* #Footer Style
+================================================== */
+.bg-voilet {background-color : #a300bf !important;}
+.text-voilet {color : #a300bf !important;}
+.bg-1 {
+ background-image: url("https://images.pexels.com/photos/693776/pexels-photo-693776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+ background-color: #a300bf;
+}
