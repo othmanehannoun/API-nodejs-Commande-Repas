@@ -103,8 +103,18 @@ router.post('/addfood', (req,res)=>{
     console.log(err)
   })
 })
+// get foods
+router.get('/get/foods',(req,res)=>{
+  Food.find()
+  .then(doc=>{
+    res.status(200).send(doc)
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+})
 
-// get food 
+// get food by ID
 router.get('/foods/:id',(req,res)=>{
   Food.find({subCat:req.params.id})
   .then(doc=>{
