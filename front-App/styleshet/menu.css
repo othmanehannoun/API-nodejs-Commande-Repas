@@ -101,6 +101,10 @@ header{
     display: inline-block;
   }
 
+  #titre span{
+    width:28%; font-size: 20px; font-weight: 600; border-bottom:2px solid rgb(155, 155, 155)
+  }
+
 @media(min-width:1200px) {
     
     .text {
@@ -122,13 +126,13 @@ header{
 
     .card {
         width: 200px;
-        height: 230px;
+        height: 155px;
         border: none
     }
 
     .card-img-top {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 75px;
         border-radius: 10px
     }
 

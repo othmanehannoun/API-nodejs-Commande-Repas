@@ -7,6 +7,8 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 
+const translate = require('@iamtraction/google-translate');
+
 
 const app = express();
 app.use(cors())
@@ -41,7 +43,12 @@ app.use('/', indexRouter);
 // 0khMIWGeQffA4pFt
 // devh2020
 
-    
+// translate('merci', { from: 'fr', to: 'en' }).then(res => {
+//     console.log(res.text); 
+//   }).catch(err => {
+//     console.error(err);
+//   });
+
 
 // -------AFFICHE USER-----------// 
 

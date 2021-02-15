@@ -8,7 +8,7 @@ async function getMenu() {
           var stringTemp = `
                  
                   <div class="item" id="cat">
-                      <button onclick="getOne('${data[i]._id}')" class="arrow" style="border: none;background: white;">
+                      <button type="button" class="btn btn-light" onclick="getOne('${data[i]._id}')" class="arrow" style="border: none;background: white;">
                         <img src="./image/nav_full_menu_160x160_.jpg" >
                       </button>
                       <div class="col-md-6 mb-2 justify-content-center" style="font-size: 1.5rem;color: #666666;font-family: math;font-size: 30px;text-align: center;">
@@ -31,7 +31,7 @@ async function getMenu() {
       for (let i = 0; i < data.length; i++) {
           var stringTemp = `
           <div class="item" id="cat">
-                      <button onclick="getfood('${data[i]._id}')" class="arrow" style="border: none;background: white;">
+                      <button type="button" class="btn btn-light"  onclick="getfood('${data[i]._id}')" class="arrow" style="background: white;">
                         <img src="./image/nav_full_menu_160x160_.jpg" >
                       </button>
                       <div class="col-md-6 mb-2 " style="font-size: 1.5rem;color: #666666;font-family: math;font-size: 30px;text-align: center;">
@@ -60,7 +60,7 @@ async function getMenu() {
             <div class="col-lg-3 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
                   <div class="card">
                     <button onclick="getId('${data[i]._id}')" class="arrow" style="border: none;background: white;">
-                      <img class="card-img-top" src="./image/food.png">
+                      <img class="card-img-top" src="./image/${data[i].image}">
                       </button>
                       <div class="card-body" style="text-align: center">
                           <span style="color: grey; font-size: 19px">${data[i].foodName}</span>
@@ -82,14 +82,13 @@ async function getMenu() {
      document.getElementById('food').innerHTML = "";
      var data = doc.data;
      console.log(data);
-     document.getElementById('food').innerHTML = "";
       for (let i = 0; i < data.length; i++) {
           var getfood = `
           
           <div class="col-lg-3 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
                   <div class="card">
-                    <button onclick="getId('${data[i]._id}')" class="arrow" style="border: none;background: white;">
-                      <img class="card-img-top" src="./image/food.png">
+                    <button type="button" class="btn btn-light" onclick="getId('${data[i]._id}')" class="arrow" style="border: none;background: white;">
+                    <img class="card-img-top" src="./image/${data[i].image}">
                       </button>
                       <div class="card-body" style="text-align: center">
                           <span style="color: grey; font-size: 19px">${data[i].foodName}</span>
@@ -105,16 +104,18 @@ async function getMenu() {
   
   async function getId(idF){
             var doc = await axios.get('http://localhost:3000/showfood/' +idF);
+            document.getElementById('titre').innerHTML = "";
             document.getElementById('header').innerHTML = "";
             document.getElementById('sidebar').innerHTML = "";
             document.getElementById('food').innerHTML = "";
-            document.getElementById('titre').innerHTML = "";
+           
             var data = doc.data[0];
             getFreeTables()
             
             var showfood = `
   
                       <div class="d-flex">
+                     
                         <img src="./image/mcdo-460x460.png" class="img-fluid" style="margin-left:30px; margin-bottom:-20px"/>
                       </div>
                       <form action="#">
@@ -365,40 +366,59 @@ async function getMenu() {
               console.log(client); 
           }
 
-          function changeLan(){ 
-              var langElem = document.querySelector('.langElem');
-              var lang = document.querySelectorAll('.lang');
+          // function changeLan(){ 
+          //     var langElem = document.querySelector('.langElem');
+          //     var lang = document.querySelectorAll('.lang');
               
-              var table = document.querySelector('.table')
-              // localStorage.setItem('lang', "english")
-              var storageLan = localStorage.getItem('lang');
+          //     var table = document.querySelector('.table')
+          //     // localStorage.setItem('lang', "english")
+          //     var storageLan = localStorage.getItem('lang');
             
-              // console.log(storageLan)
-              langElem.addEventListener('click',(e)=>{
-                  var lg = e.target.getAttribute('language');
-                  langElem.querySelector('.active').classList.remove('active');
-                  e.target.classList.add('active')
-                  localStorage.setItem('lang', lg)
-                  storageLan = localStorage.getItem('lang');
-                  console.log(storageLan)
-                  setData(storageLan)
-              })
+          //     // console.log(storageLan)
+          //     langElem.addEventListener('click',(e)=>{
+          //         var lg = e.target.getAttribute('language');
+          //         langElem.querySelector('.active').classList.remove('active');
+          //         e.target.classList.add('active')
+          //         localStorage.setItem('lang', lg)
+          //         storageLan = localStorage.getItem('lang');
+          //         console.log(storageLan)
+          //         setData(storageLan)
+          //     })
               
-              setData(storageLan)
-              function setData(lan) {
-                  var data = {
-                      "english": {
-                          "table": "table number ",
+          //     setData(storageLan)
+          //     function setData(lan) {
+          //         var data = {
+          //             "english": {
+          //                 "table": "table number ",
                           
-                      },
-                      "francais": {
-                          "table": "numero de table "
-                      }
-                  }
-                  console.log(lan)
+          //             },
+          //             "francais": {
+          //                 "table": "numero de table "
+          //             }
+          //         }
+          //         console.log(lan)
                   
-                  table.textContent = data[lan].table
+          //         table.textContent = data[lan].table
 
                 
-              }
-          }
+          //     }
+          // }
+
+        let arabic = [
+            {HOME:"القائمة"}
+        ]
+        
+        const english = [
+            {HOME: "HOME"}
+        ]
+        
+        function arabicFun() {
+            document.getElementById('hometraduction').innerText = arabic[0].HOME;
+            document.querySelector("html").style.direction = "rtl"
+        }
+        
+        function englishFun() {
+            document.getElementById('hometraduction').innerText = english[0].HOME;
+            document.querySelector("html").style.direction = "ltr"
+        }
+        
