@@ -9,7 +9,8 @@ async function getMenu() {
                  
                   <div class="item" id="cat">
                       <button type="button" class="btn btn-light" onclick="getOne('${data[i]._id}')" class="arrow" style="border: none;background: white;">
-                        <img src="./image/nav_full_menu_160x160_.jpg" >
+                        <img src="./image/${data[i].image}" >
+                       
                       </button>
                       <div class="col-md-6 mb-2 justify-content-center" style="font-size: 1.5rem;color: #666666;font-family: math;font-size: 30px;text-align: center;">
                         <span class="title">${data[i].catName} </span>
@@ -32,7 +33,7 @@ async function getMenu() {
           var stringTemp = `
           <div class="item" id="cat">
                       <button type="button" class="btn btn-light"  onclick="getfood('${data[i]._id}')" class="arrow" style="background: white;">
-                        <img src="./image/nav_full_menu_160x160_.jpg" >
+                        <img src="./image/cat.jpg" >
                       </button>
                       <div class="col-md-6 mb-2 " style="font-size: 1.5rem;color: #666666;font-family: math;font-size: 30px;text-align: center;">
                         <span class="title">${data[i].sousCatName} </span>
@@ -51,6 +52,8 @@ async function getMenu() {
   async function getALLfoods(){ 
 
         var doc = await axios.get('http://localhost:3000/get/foods/');
+        document.getElementById('food').innerHTML = "";   
+
         var data = doc.data;
         console.log(data);
        
@@ -133,7 +136,7 @@ async function getMenu() {
                           <div class="col-md-4"></div>
                           <div class="col-md-4 mb-2">
                             <div class="form-group">
-                              <select class="form-control" id="tableSelect" required>
+                              <select class="form-control" id="tableSelect">
                                 <option value="">-- Select Table --</option>
                                 
                               </select>
@@ -255,10 +258,12 @@ async function getMenu() {
           async function getFreeTables(){
               var freeTable = await axios.get('http://localhost:3000/get/table');
               var tables = freeTable.data;
-              for (let i = 0; i < tables.length; i++) {
-              var option = `<option>${tables[i].tableNumber}</option>`
-              document.getElementById('tableSelect').innerHTML += option 
-              }
+             
+                for (let i = 0; i < tables.length; i++) {
+                  var option = `<option>${tables[i].tableNumber}</option>`
+                  document.getElementById('tableSelect').innerHTML += option 
+                  }
+              
           }
 
            function total(){
@@ -356,69 +361,63 @@ async function getMenu() {
                   
                   console.log('no');
               }
-              // return;
+              
               body = {id : id,qte:qte,usePoints:usePoints,code:code,tableSelect:tableSelect}
               const productPrice = await axios.post('http://localhost:3000/setOrder',body);
-              // const total = productPrice.data.total;
               const client = productPrice.data.client;
-              // console.log(productPrice.data.productPrice);
-              // var total = price * qte
               console.log(client); 
           }
 
-          // function changeLan(){ 
-          //     var langElem = document.querySelector('.langElem');
-          //     var lang = document.querySelectorAll('.lang');
-              
-          //     var table = document.querySelector('.table')
-          //     // localStorage.setItem('lang', "english")
-          //     var storageLan = localStorage.getItem('lang');
-            
-          //     // console.log(storageLan)
-          //     langElem.addEventListener('click',(e)=>{
-          //         var lg = e.target.getAttribute('language');
-          //         langElem.querySelector('.active').classList.remove('active');
-          //         e.target.classList.add('active')
-          //         localStorage.setItem('lang', lg)
-          //         storageLan = localStorage.getItem('lang');
-          //         console.log(storageLan)
-          //         setData(storageLan)
-          //     })
-              
-          //     setData(storageLan)
-          //     function setData(lan) {
-          //         var data = {
-          //             "english": {
-          //                 "table": "table number ",
-                          
-          //             },
-          //             "francais": {
-          //                 "table": "numero de table "
-          //             }
-          //         }
-          //         console.log(lan)
-                  
-          //         table.textContent = data[lan].table
-
-                
-          //     }
-          // }
-
-        let arabic = [
-            {HOME:"القائمة"}
+        let frensh = [
+            {HOME:"ACCUEIL",
+             ABOUT:"A PROPOSE",
+             CONTACT_US:"CONTACTEZ NOUS",
+             LANGUAGE:"LANGUE",
+             Frensh: "Français",
+             English: "Anglais",
+             Arabic:"Arabe",
+             FILTER_BY_CATEGORY: "FILTRE PAR CATÉGORIE"
+          }
         ]
         
         const english = [
-            {HOME: "HOME"}
+            {HOME: "HOME",
+            ABOUT:"ABOUT",
+            CONTACT_US:"CONTACT_US",
+            LANGUAGE:"LANGUAGE",
+            Frensh: "Frensh",
+            Englesh: "Englesh",
+            Arabic:"Arabic",
+            FILTER_BY_CATEGORY:"FILTER BY CATEGORY"
+          }
         ]
         
-        function arabicFun() {
-            document.getElementById('hometraduction').innerText = arabic[0].HOME;
-            document.querySelector("html").style.direction = "rtl"
+        function frenshFun() {
+            document.getElementById('hometraduction').innerText = frensh[0].HOME;
+            document.getElementById('abouttraduction').innerText = frensh[0].ABOUT;
+            document.getElementById('contacttraduction').innerText = frensh[0].CONTACT_US;
+            document.getElementById('navbarDarkDropdownMenuLink').innerText = frensh[0].LANGUAGE;
+            document.getElementById('Frenshtraduction').innerText = frensh[0].Frensh;
+            document.getElementById('Englishtraduction').innerText = frensh[0].English;
+            document.getElementById('Arabictraduction').innerText = frensh[0].Arabic;
+            document.getElementById('title').innerText = frensh[0].FILTER_BY_CATEGORY;
+            // document.querySelector("html").style.direction = "rtl"
         }
         
         function englishFun() {
             document.getElementById('hometraduction').innerText = english[0].HOME;
-            document.querySelector("html").style.direction = "ltr"
+            document.getElementById('abouttraduction').innerText = english[0].ABOUT;
+            document.getElementById('contacttraduction').innerText = english[0].CONTACT_US;
+            document.getElementById('navbarDarkDropdownMenuLink').innerText = english[0].LANGUAGE;
+            document.getElementById('Frenshtraduction').innerText = english[0].Frensh;
+            document.getElementById('Englishtraduction').innerText = english[0].Englesh;
+            document.getElementById('Arabictraduction').innerText = english[0].Arabic;
+            document.getElementById('title').innerText = english[0].FILTER_BY_CATEGORY;
+
+
+
+
+
+            // document.querySelector("html").style.direction = "ltr"
         }
         
